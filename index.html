@@ -1,0 +1,913 @@
+<!doctype html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kafe Aroma - Tempat Nikmat Bersantai</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --coklat-tua: #5d4037;
+            --coklat-medium: #8d6e63;
+            --coklat-muda: #d7ccc8;
+            --hitam: #212121;
+            --hijau-tua: #2e7d32;
+            --hijau-medium: #4caf50;
+            --hijau-muda: #c8e6c9;
+            --putih: #ffffff;
+            --krem: #fff8f0;
+            --emas: #ffd700;
+        }
+
+        body {
+            background-color: var(--krem);
+            color: var(--hitam);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header & Navigasi */
+        header {
+            background-color: var(--coklat-tua);
+            color: var(--putih);
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            animation: slideDown 1s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+            }
+
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--putih);
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            color: var(--emas);
+            margin-right: 10px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            color: var(--putih);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 5px 0;
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: var(--hijau-muda);
+        }
+
+        nav ul li a::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--hijau-medium);
+            transition: width 0.3s;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--putih);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background:
+                linear-gradient(rgba(93, 64, 55, 0.8), rgba(33, 33, 33, 0.9)),
+                url("https://images.unsplash.com/photo-1498804103079-a6351b050096?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2067&q=80");
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--putih);
+            padding: 0 2rem;
+            margin-top: 80px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            animation: fadeInUp 1.5s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: var(--coklat-muda);
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--hijau-medium);
+            color: var(--putih);
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: 2px solid var(--hijau-medium);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:hover {
+            background-color: transparent;
+            color: var(--hijau-medium);
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Menu Section */
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--coklat-tua);
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background-color: var(--hijau-medium);
+        }
+
+        .menu {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .menu-item {
+            background-color: var(--putih);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition:
+                transform 0.3s,
+                box-shadow 0.3s;
+            animation: fadeIn 1s ease-out;
+            animation-fill-mode: both;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .menu-item:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+
+        .menu-item:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+
+        .menu-item:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        .menu-item:nth-child(4) {
+            animation-delay: 0.8s;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .menu-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .menu-content {
+            padding: 1.5rem;
+        }
+
+        .menu-content h3 {
+            color: var(--coklat-tua);
+            margin-bottom: 0.5rem;
+        }
+
+        .menu-content p {
+            color: var(--hitam);
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .price {
+            color: var(--hijau-tua);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* About Section */
+        .about {
+            padding: 5rem 2rem;
+            background-color: var(--coklat-muda);
+        }
+
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+        }
+
+        .about-img {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 15px 15px 0 var(--hijau-muda);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        .about-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .about-content {
+            flex: 1;
+        }
+
+        .about-content h2 {
+            color: var(--coklat-tua);
+            margin-bottom: 1.5rem;
+        }
+
+        .about-content p {
+            margin-bottom: 1.5rem;
+            color: var(--hitam);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 5rem 2rem;
+            background-color: var(--putih);
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            gap: 4rem;
+        }
+
+        .contact-info {
+            flex: 1;
+        }
+
+        .contact-info h2 {
+            color: var(--coklat-tua);
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-item i {
+            background-color: var(--hijau-muda);
+            color: var(--hijau-tua);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .contact-form {
+            flex: 1;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--coklat-tua);
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--coklat-medium);
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--hijau-medium);
+            outline: none;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--hitam);
+            color: var(--putih);
+            padding: 3rem 2rem 1.5rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer-column h3 {
+            color: var(--hijau-muda);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-column ul li a {
+            color: var(--coklat-muda);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--hijau-medium);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--coklat-medium);
+            color: var(--putih);
+            border-radius: 50%;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-icons a:hover {
+            background-color: var(--hijau-medium);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--coklat-medium);
+            color: var(--coklat-muda);
+            font-size: 0.9rem;
+        }
+
+        /* Animasi tambahan */
+        .coffee-steam {
+            position: absolute;
+            bottom: 120px;
+            right: 10%;
+            width: 80px;
+            height: 80px;
+            z-index: 1;
+        }
+
+        .steam {
+            position: absolute;
+            width: 20px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            bottom: 0;
+            animation: steamRise 4s infinite ease-out;
+        }
+
+        .steam:nth-child(1) {
+            left: 10px;
+            animation-delay: 0.5s;
+        }
+
+        .steam:nth-child(2) {
+            left: 30px;
+            animation-delay: 1s;
+        }
+
+        .steam:nth-child(3) {
+            left: 50px;
+            animation-delay: 1.5s;
+        }
+
+        @keyframes steamRise {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 0.6;
+            }
+
+            100% {
+                transform: translateY(-100px) scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+
+            .about-container,
+            .contact-container {
+                flex-direction: column;
+            }
+
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            nav ul {
+                flex-direction: column;
+                width: 100%;
+                display: none;
+                margin-top: 1rem;
+            }
+
+            nav ul.show {
+                display: flex;
+            }
+
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                right: 2rem;
+                top: 1.5rem;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header & Navigasi -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-coffee"></i>
+                <span>Kafe Aroma</span>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul id="navMenu">
+                    <li><a href="#home">Beranda</a></li>
+                    <li><a href="#menu">Menu</a></li>
+                    <li><a href="#about">Tentang Kami</a></li>
+                    <li><a href="#contact">Kontak</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Rasa Kopi Terbaik di Kota</h1>
+            <p>
+                Nikmati pengalaman bersantai dengan kopi berkualitas tinggi, makanan
+                lezat, dan suasana yang hangat di Kafe Aroma. Tempat yang sempurna
+                untuk bertemu, bekerja, atau sekadar bersantai.
+            </p>
+            <a href="#menu" class="btn">Lihat Menu Kami</a>
+        </div>
+
+        <!-- Animasi uap kopi -->
+        <div class="coffee-steam">
+            <div class="steam"></div>
+            <div class="steam"></div>
+            <div class="steam"></div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="menu" id="menu">
+        <h2 class="section-title">Menu Andalan Kami</h2>
+        <div class="menu-grid">
+            <div class="menu-item">
+                <div class="menu-img" style="
+              background-image: url(&quot;https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80&quot;);
+            "></div>
+                <div class="menu-content">
+                    <h3>Espresso Premium</h3>
+                    <p>
+                        Kopi espresso dengan biji kopi pilihan dari tanah tinggi,
+                        menghasilkan rasa yang kuat dan aroma yang khas.
+                    </p>
+                    <div class="price">Rp 25.000</div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-img" style="
+              background-image: url(&quot;https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80&quot;);
+            "></div>
+                <div class="menu-content">
+                    <h3>Burger Spesial</h3>
+                    <p>
+                        Burger dengan daging sapi premium, keju leleh, sayuran segar, dan
+                        saus rahasia kami.
+                    </p>
+                    <div class="price">Rp 45.000</div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-img" style="
+              background-image: url(&quot;https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80&quot;);
+            "></div>
+                <div class="menu-content">
+                    <h3>Salad Segar</h3>
+                    <p>
+                        Campuran sayuran segar dengan dressing khusus, dipadukan dengan
+                        potongan ayam atau salmon.
+                    </p>
+                    <div class="price">Rp 35.000</div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-img" style="
+              background-image: url(&quot;https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80&quot;);
+            "></div>
+                <div class="menu-content">
+                    <h3>Dessert Manis</h3>
+                    <p>
+                        Pilihan dessert lezat mulai dari cheesecake, brownies, hingga
+                        tiramisu buatan sendiri.
+                    </p>
+                    <div class="price">Rp 28.000</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="about-container">
+            <div class="about-img">
+                <img src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                    alt="Interior Kafe Aroma" />
+            </div>
+            <div class="about-content">
+                <h2 class="section-title">Tentang Kafe Aroma</h2>
+                <p>
+                    Kafe Aroma didirikan pada tahun 2015 dengan misi memberikan
+                    pengalaman bersantai terbaik dengan kopi berkualitas tinggi. Kami
+                    percaya bahwa secangkir kopi yang baik dapat menghubungkan
+                    orang-orang dan menciptakan momen berharga.
+                </p>
+                <p>
+                    Kami memilih biji kopi terbaik dari petani lokal dan mengolahnya
+                    dengan teknik yang tepat untuk menghasilkan rasa yang konsisten dan
+                    nikmat. Selain kopi, kami juga menyajikan berbagai makanan ringan
+                    dan utama yang dibuat dari bahan-bahan segar.
+                </p>
+                <p>
+                    Suasana hangat dan nyaman di kafe kami membuatnya menjadi tempat
+                    yang sempurna untuk bekerja, bertemu teman, atau sekadar menikmati
+                    waktu sendiri dengan buku favorit.
+                </p>
+                <a href="#contact" class="btn">Kunjungi Kami</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <h2 class="section-title">Hubungi Kami</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h2>Informasi Kontak</h2>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <h3>Alamat</h3>
+                        <p>Jl. Aroma No. 123, Jakarta Selatan</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <div>
+                        <h3>Telepon</h3>
+                        <p>(021) 1234-5678</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <h3>Email</h3>
+                        <p>info@kafearoma.com</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-clock"></i>
+                    <div>
+                        <h3>Jam Buka</h3>
+                        <p>Senin - Minggu: 07:00 - 22:00</p>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-form">
+                <h2>Kirim Pesan</h2>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Nama Lengkap</label>
+                        <input type="text" id="name" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Pesan</label>
+                        <textarea id="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Kirim Pesan</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>Kafe Aroma</h3>
+                <p>
+                    Tempat yang sempurna untuk menikmati kopi berkualitas dan makanan
+                    lezat di suasana yang hangat dan nyaman.
+                </p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Menu Cepat</h3>
+                <ul>
+                    <li><a href="#home">Beranda</a></li>
+                    <li><a href="#menu">Menu</a></li>
+                    <li><a href="#about">Tentang Kami</a></li>
+                    <li><a href="#contact">Kontak</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Layanan</h3>
+                <ul>
+                    <li><a href="#">Pesan Antar</a></li>
+                    <li><a href="#">Reservasi Meja</a></li>
+                    <li><a href="#">Catering Acara</a></li>
+                    <li><a href="#">Pelatihan Barista</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 Kafe Aroma. Semua Hak Dilindungi.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+        const navMenu = document.getElementById("navMenu");
+
+        mobileMenuBtn.addEventListener("click", () => {
+            navMenu.classList.toggle("show");
+            mobileMenuBtn.innerHTML = navMenu.classList.contains("show")
+                ? '<i class="fas fa-times"></i>'
+                : '<i class="fas fa-bars"></i>';
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll("nav ul li a").forEach((link) => {
+            link.addEventListener("click", () => {
+                navMenu.classList.remove("show");
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+            anchor.addEventListener("click", function (e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute("href");
+                if (targetId === "#") return;
+
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: "smooth",
+                    });
+                }
+            });
+        });
+
+        // Form submission handling
+        const contactForm = document.getElementById("contactForm");
+        contactForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            // Get form values
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const message = document.getElementById("message").value;
+
+            // In a real application, you would send this data to a server
+            // For this example, we'll just show an alert
+            alert(
+                `Terima kasih ${name}! Pesan Anda telah berhasil dikirim. Kami akan menghubungi Anda di ${email} segera.`,
+            );
+
+            // Reset form
+            contactForm.reset();
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px",
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("animated");
+                }
+            });
+        }, observerOptions);
+
+        // Observe menu items for animation
+        document.querySelectorAll(".menu-item").forEach((item) => {
+            observer.observe(item);
+        });
+    </script>
+</body>
+
+</html>
